@@ -8,7 +8,7 @@ normalization time and stored directly in artifacts_normalized.json.
 
 Outputs:
   raw/{uuid}.json     – Open Context JSON-LD for each artifact
-  sample_ids.json     – list of {slug, uuid} pairs used by normalize.py
+  raw/index.json      – list of {slug, uuid} pairs for this run; used by normalize.py
 """
 
 import json
@@ -21,7 +21,7 @@ import requests
 
 PARQUET_FILE  = Path("archaia_sample_100_v4.parquet")
 RAW_DIR       = Path("raw")
-SAMPLE_FILE   = Path("sample_ids.json")
+SAMPLE_FILE   = RAW_DIR / "index.json"
 
 REQUEST_DELAY = 1.0   # seconds between API calls (be polite to Open Context)
 HEADERS       = {"User-Agent": "ArchaeologicalGraphProject/1.0 (research)"}
@@ -53,10 +53,9 @@ def main():
         {"slug": row["slug"], "uuid": hex_to_uuid(row["uuid_hex"])}
         for _, row in df.iterrows()
     ]
+    RAW_DIR.mkdir(exist_ok=True)
     SAMPLE_FILE.write_text(json.dumps(pairs, indent=2), encoding="utf-8")
     print(f"  Written → {SAMPLE_FILE}")
-
-    RAW_DIR.mkdir(exist_ok=True)
     total = len(pairs)
     for i, entry in enumerate(pairs, 1):
         uuid     = entry["uuid"]

@@ -30,7 +30,7 @@ load_dotenv(_here / ".env", override=True)
 load_dotenv(_here.parent / ".env", override=True)
 
 RAW_DIR     = Path("raw")
-SAMPLE_FILE = Path("sample_ids.json")
+SAMPLE_FILE = RAW_DIR / "index.json"
 OUTPUT_FILE = Path("artifacts_normalized.json")
 
 NOMINATIM_URL     = "https://nominatim.openstreetmap.org/search"
@@ -196,7 +196,7 @@ def main():
         raise SystemExit(f"ERROR: {SAMPLE_FILE} not found. Run collect.py first.")
 
     with open(SAMPLE_FILE, encoding="utf-8") as f:
-        sample_pairs = json.load(f)   # list of {artifact_id, uuid}
+        sample_pairs = json.load(f)   # list of {slug, uuid}
 
     # Build uuid → supplemental metadata map from the parquet.
     PARQUET_FILE = Path("archaia_sample_100_v4.parquet")
@@ -216,30 +216,22 @@ def main():
     except Exception as e:
         print(f"Warning: could not load parquet for supplemental metadata: {e}")
 
-    raw_files = {p.stem: p for p in RAW_DIR.glob("*.json")}
-    if not raw_files:
-        raise SystemExit(f"No raw JSON files found in {RAW_DIR}/. Run collect.py first.")
+    if not RAW_DIR.exists():
+        raise SystemExit(f"No raw/ directory found. Run collect.py first.")
 
-    # Load or create output to support resuming.
     if OUTPUT_FILE.exists():
-        with open(OUTPUT_FILE, encoding="utf-8") as f:
-            results = json.load(f)
-        done_ids = {a["id"] for a in results}
-        print(f"Resuming — {len(done_ids)} already normalized")
-    else:
-        results  = []
-        done_ids = set()
+        OUTPUT_FILE.unlink()
+        print(f"Deleted existing {OUTPUT_FILE}")
+
+    results  = []
+    done_ids = set()
 
     total = len(sample_pairs)
     for i, entry in enumerate(sample_pairs, 1):
         uuid = entry["uuid"]
 
-        if uuid in done_ids:
-            print(f"[{i}/{total}] {uuid} — already done, skipping")
-            continue
-
-        raw_path = raw_files.get(uuid)
-        if raw_path is None:
+        raw_path = RAW_DIR / f"{uuid}.json"
+        if not raw_path.exists():
             print(f"[{i}/{total}] {uuid} — no raw JSON, skipping")
             continue
 
@@ -281,7 +273,6 @@ def main():
                 era["year_start"], era["year_end"] = e, s
 
             results.append(artifact)
-            done_ids.add(uuid)
 
             with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
                 json.dump(results, f, indent=2, ensure_ascii=False)
