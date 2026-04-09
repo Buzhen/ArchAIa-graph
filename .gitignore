@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Pipeline inputs — large, not needed for the demo
+raw/
+images/
+*.parquet
+
+# Dropbox conflict copies
+*conflicted copy*
+
+# OS
+.DS_Store
+Thumbs.db
