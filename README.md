@@ -2,7 +2,7 @@
 
 An interactive knowledge graph of archaeological artifacts from [Open Context](https://opencontext.org), built with Claude AI.
 
-**[Live demo →](https://buzhen.github.io/ArchAIa-graph/ui/)**
+**[Live demo →](https://Buzhen.github.io/ArchAIa-graph/ui/)**
 
 ---
 
