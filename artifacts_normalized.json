@@ -46,7 +46,7 @@
       "lat": 43.15272730991568,
       "lng": 11.40181089493669
     },
-    "function": "textile production (spindle whorl used for spinning fibers)",
+    "function": "textile production — spinning (spindle whorl)",
     "images": [
       "https://storage.googleapis.com/opencontext-media/internet-archive/ia-thumbnails/24-20050017rchjpg.jpg",
       "https://storage.googleapis.com/opencontext-media/internet-archive/thumbs/opencontext-24-20050017brchjpg-24-20050017brchjpg.jpg",
@@ -229,7 +229,7 @@
   {
     "id": "c2ac7c9c-9e36-41cc-f354-13079c60b813",
     "label": "PC 19970186",
-    "description": "The rim, body and tondo of a cup is preserved. The body of the cup gently curves upwards from the tondo. The rim projects upwards from the body of the cup, creating a definitive angle. The rim slants slightly inwards towards the interior of the cup. On the exterior the tondo projects downwards from the body of the cup with a low ridge defining the upper portion of the base. Only the very beginning of the curvature into the stem is preserved. On the interior of the cup, the tondo is encirlced by two incised, concentric circles. The larger of the two circles is approximately 0.048 m in diameter while the smaller circle is approximately 0.035 m in diameter. The larger of these two circles corresponds to the exterior attachment point of the base",
+    "description": "The rim, body and tondo of a cup is preserved.  The body of the cup gently curves upwards from the tondo.   The rim projects upwards from the body of the cup, creating a definitive angle.  The rim slants slightly inwards towards the interior of the cup.   On the exterior the tondo projects downwards from the body of the cup with a low ridge defining the upper portion of the base.  Only the very beginning of the curvature into the stem is preserved.  On the interior of the cup, the tondo is encirlced by two incised, concentric circles.  The larger of the two circles is approximately 0.048 m in diameter while the smaller circle is approximately 0.035 m in diameter.  The larger of these two circles corresponds to the exterior attachment point of the base",
     "material": [
       "impasto"
     ],
@@ -244,7 +244,7 @@
       "lat": 43.152809149414374,
       "lng": 11.4014065991236
     },
-    "function": "drinking vessel",
+    "function": "drinking vessel (cup)",
     "images": [
       "https://storage.googleapis.com/opencontext-media/internet-archive/thumbs/opencontext-24-19970186ajpg-24-19970186ajpg.jpg",
       "https://storage.googleapis.com/opencontext-media/internet-archive/thumbs/opencontext-24-19970186bjpg-24-19970186bjpg.jpg",
@@ -311,7 +311,7 @@
   {
     "id": "ff2d8214-1b02-436b-3291-cb4a17f5fea3",
     "label": "Sherd D-4-4085-2-5",
-    "description": "med; ext burn marks. Middle Bronze Age flat base sherd. Interior color: Light Red (2.5 YR 7/8), exterior color: Light Brown (7.5 YR 6/3), core color: Very Dark Gray (Gley 1 3/N). Temper: moderate fine and medium grat/white grit, moderate calc viz on ext sfc, abundant fine and medium chaff.",
+    "description": "med; ext burn marks. Middle Bronze Age flat base sherd with unspecified fabric and surface treatment. Interior color: Light Red (2.5 YR 7/8), exterior color: Light Brown (7.5 YR 6/3), core color: Very Dark Gray (Gley 1 3/N). Temper: moderate fine and medium grat/white grit, moderate calc viz on ext sfc, abundant fine and medium chaff. Rim diameter: 12.0 cm.",
     "material": [
       "ceramic"
     ],
@@ -444,7 +444,7 @@
   {
     "id": "ffb981b3-74d5-44fd-f73f-2e31e7d4db1c",
     "label": "Sherd A-9-6-1-3",
-    "description": "bead rim cup",
+    "description": "bead rim cup; Plain clay / a bowl with burnished interior and exterior surfaces, grit temper with fine and medium sand (1/4-1/2 mm), rounded temper description. Rim diameter 14.0 cm.",
     "material": [
       "ceramic"
     ],
@@ -561,7 +561,7 @@
       "lat": 37.9082222196375,
       "lng": 22.930958326917445
     },
-    "function": null,
+    "function": "drinking vessel",
     "images": [
       "https://artiraq.org/static/opencontext/pettegrew-ekas-survey/thumbs/artifacts-drawings/1726D39.jpg",
       "https://artiraq.org/static/opencontext/pettegrew-ekas-survey/thumbs/artifacts-photos/1726P39.jpg"
@@ -645,7 +645,7 @@
   {
     "id": "fe12321f-734e-4c9d-a7c5-f3958f6fd426",
     "label": "Obj 1780000009",
-    "description": "Medium vessel--orange. Base, Disk extant. Medium-Coarse fabric. Chronotype: Medium Coarse Ware, Late Bronze Age.",
+    "description": "Medium vessel--orange. Base, Disk extant. Medium-Coarse fabric pottery. Chronotype: Medium Coarse Ware, Late Bronze Age.",
     "material": [
       "pottery"
     ],
@@ -669,7 +669,7 @@
   {
     "id": "ffd6ab03-2049-472f-a26d-d3ca599db238",
     "label": "Obj 1782000038",
-    "description": null,
+    "description": "Thick walled-dotted line-buff-photo",
     "material": [
       "pottery"
     ],
@@ -719,7 +719,7 @@
   {
     "id": "d7dcccb1-4191-4364-84b1-4bbb3e298cda",
     "label": "Obj 1544000019",
-    "description": "S curves along edge--=9003-0-501",
+    "description": null,
     "material": [
       "pottery"
     ],
@@ -734,7 +734,7 @@
       "lat": 37.900547751029926,
       "lng": 22.960713942019247
     },
-    "function": "storage vessel",
+    "function": null,
     "images": [
       "https://artiraq.org/static/opencontext/pettegrew-ekas-survey/thumbs/artifacts-drawings/1544D19a.jpg",
       "https://artiraq.org/static/opencontext/pettegrew-ekas-survey/thumbs/artifacts-drawings/1544D19b.jpg",
@@ -976,7 +976,7 @@
       "lat": 30.3287,
       "lng": 35.4421
     },
-    "function": "lighting device (lamp fragment)",
+    "function": "lighting device",
     "images": [
       "https://storage.googleapis.com/opencontext-media/internet-archive/ia-thumbnails/10-96-l-16-1.jpg"
     ],
@@ -1000,7 +1000,7 @@
       "lat": 30.3287,
       "lng": 35.4421
     },
-    "function": "architectural element",
+    "function": null,
     "images": [
       "https://storage.googleapis.com/opencontext-media/internet-archive/ia-thumbnails/10-99-s-11.jpg"
     ],
@@ -1048,7 +1048,7 @@
       "lat": 31.868286659974657,
       "lng": 35.88842383193962
     },
-    "function": "adornment (bead)",
+    "function": "bead (personal adornment)",
     "images": [
       "https://storage.googleapis.com/opencontext-media/umayri-madaba-plains-project/thumbs/umayri-opendig-objects/2012/b120009.jpg",
       "https://storage.googleapis.com/opencontext-media/umayri-madaba-plains-project/thumbs/umayri-opendig-objects/2012/b120009a.jpg"
@@ -1219,7 +1219,7 @@
   {
     "id": "9ac81524-a620-47a5-b642-6e1c84e43ec7",
     "label": "A120027",
-    "description": "Possible pestle, broken and worn, nearly mushroom-shaped, made of basalt. Very crude craftsmanship, fragmentary preservation, poor condition. Weight: 102.6g, diameter: 4.9cm, width: 2.9cm, length/height: 5.0cm.",
+    "description": "Possible pestle, broken and worn, nearly mushroom-shaped, made of basalt. Very crude craftsmanship, fragmentary preservation, poor condition. Weight: 102.6g, diameter: 4.9cm, length/height: 5.0cm, width: 2.9cm.",
     "material": [
       "basalt"
     ],
@@ -1252,7 +1252,7 @@
       "lat": 31.8687222315092,
       "lng": 35.88791979383394
     },
-    "function": "Seal impression (scaraboid)",
+    "function": "Seal Impression (Scaraboid)",
     "images": [
       "https://storage.googleapis.com/opencontext-media/umayri-madaba-plains-project/thumbs/umayri-opendig-objects/2012/b120029.jpg",
       "https://storage.googleapis.com/opencontext-media/umayri-madaba-plains-project/thumbs/umayri-opendig-objects/2012/b120029b.jpg",
@@ -1292,7 +1292,7 @@
     "label": "DT# 874",
     "description": "Obverse is male profile with bun? at nape of neck. Inscription STANTINI..? Reversse has two figures on either side of a staff with unidentified objects in between and an unreadable inscription. Constantine 4th cent. AD. 330-337.",
     "material": [
-      "copper/bronze"
+      "cooper/bronze"
     ],
     "era": {
       "name": null,
@@ -1318,7 +1318,7 @@
     "label": "DT# 479",
     "description": "Inscribed copper alloy coin. Obverse= female head in profile--elongated face, thick neck; diadem=double strand of tiny points, ear curve pronounced, hair in long bun. Reverse=inscription 1. VOT; 2. XX;3. MVLT; 4. X inside wreath; outside=M ANB",
     "material": [
-      "copper/bronze"
+      "cooper/bronze"
     ],
     "era": {
       "name": null,
@@ -1458,7 +1458,7 @@
       "lat": 37.322559,
       "lng": 37.034902
     },
-    "function": "cutting tool (axe or adze)",
+    "function": "Axe or Adze",
     "images": [
       "https://storage.googleapis.com/opencontext-media/internet-archive/ia-thumbnails/1-draw-dt-720.jpg",
       "https://storage.googleapis.com/opencontext-media/internet-archive/ia-thumbnails/1-photo-dt-720-a.jpg",
@@ -1510,7 +1510,7 @@
       "lat": 37.322559,
       "lng": 37.034902
     },
-    "function": null,
+    "function": "worked sherd",
     "images": [
       "https://storage.googleapis.com/opencontext-media/internet-archive/ia-thumbnails/1-draw-dt-1530.jpg",
       "https://storage.googleapis.com/opencontext-media/internet-archive/ia-thumbnails/1-photo1-dt-1530.jpg",
@@ -1557,7 +1557,7 @@
       "lat": 31.885012184583,
       "lng": 35.216886089459
     },
-    "function": "spinning tool (spindle whorl used in weaving and textile production)",
+    "function": "Spindle whorl used in weaving and textile production",
     "images": [
       "https://storage.googleapis.com/opencontext-media/internet-archive/ia-thumbnails/14-b2009167jpg.jpg",
       "https://storage.googleapis.com/opencontext-media/internet-archive/thumbs/opencontext-14-b2009167-2jpg-14-b2009167-2jpg.jpg",
@@ -1574,7 +1574,7 @@
       "bronze"
     ],
     "era": {
-      "name": null,
+      "name": "Iron IIB - Iron IIC",
       "year_start": -749,
       "year_end": -585
     },
@@ -1736,7 +1736,7 @@
       "lat": 31.885012184583,
       "lng": 35.216886089459
     },
-    "function": "loom weight used in weaving and textiles",
+    "function": "weaving and textiles",
     "images": [
       "https://storage.googleapis.com/opencontext-media/internet-archive/ia-thumbnails/14-b2009149-2jpg.jpg",
       "https://storage.googleapis.com/opencontext-media/internet-archive/ia-thumbnails/14-b2009149-3jpg.jpg",
@@ -1760,7 +1760,7 @@
       "lat": 31.885012184583,
       "lng": 35.216886089459
     },
-    "function": "figurine",
+    "function": "figurine (zoomorphic)",
     "images": [
       "https://artiraq.org/static/opencontext/bade-museum/thumbs/2015-objects/photographs/B2015.1.83/b2015183-2.jpg",
       "https://artiraq.org/static/opencontext/bade-museum/thumbs/2015-objects/photographs/B2015.1.83/b2015183-3.jpg",
@@ -1838,7 +1838,7 @@
   {
     "id": "048ff32f-3c47-4614-8c37-3d50313ebee4",
     "label": "Bone TS005",
-    "description": "Lateral side may have been removed, cracks visible. Mammal bone scapula (proximal scapula) from Taosi site, Longshan culture, Terminal Neolithic period. Found in a trash pit context (H59 (2)), with 6 divination marks and no inscriptions. 0-1/4 of bone present.",
+    "description": "Lateral side may have been removed, cracks visible. Proximal scapula of a large mammal, found in a trash pit (H59 (2)) at the Taosi site. Contains 6 divination marks. No inscriptions present. Preservation: 0-1/4 of bone present.",
     "material": [
       "animal material"
     ],
@@ -2190,7 +2190,7 @@
   {
     "id": "f60f0239-1cc2-420c-8bf7-1ebfaa0b1acc",
     "label": "5505-111",
-    "description": "flat base",
+    "description": null,
     "material": [
       "pottery"
     ],
@@ -2275,7 +2275,7 @@
       "faience"
     ],
     "era": {
-      "name": "Classic Kerma",
+      "name": null,
       "year_start": -1749,
       "year_end": -1549
     },
@@ -2285,7 +2285,7 @@
       "lat": 19.612089,
       "lng": 30.445064
     },
-    "function": "amulet-bead",
+    "function": null,
     "images": [
       "https://artiraq.org/static/opencontext/kerma-amulets/thumbs/13-4113-id945-1.png",
       "https://artiraq.org/static/opencontext/kerma-amulets/thumbs/13-4113-id945-3.png"
@@ -2334,7 +2334,7 @@
       "lat": 21.066667,
       "lng": 30.716667
     },
-    "function": "personal adornment / ornament",
+    "function": "personal adornment / ornamentation",
     "images": [
       "https://artiraq.org/static/opencontext/kerma-amulets/thumbs/026183-id1975.png"
     ],
@@ -2358,7 +2358,7 @@
       "lat": 19.612089,
       "lng": 30.445064
     },
-    "function": null,
+    "function": "bead / personal adornment",
     "images": [
       "https://artiraq.org/static/opencontext/kerma-amulets/thumbs/13-5743-id1078-1.png",
       "https://artiraq.org/static/opencontext/kerma-amulets/thumbs/13-5743-id1078-2.png",
@@ -2393,7 +2393,7 @@
   {
     "id": "f308ca29-abb0-4bfd-9d7d-4afb50b9c54d",
     "label": "Item 2038",
-    "description": "170 ring-beads with an irregular surface, slightly different from each other both in terms of their holes and diameter.",
+    "description": "170 ring-beads with an irregular surface, slightly different from each other both in terms of their holes\nand diameter.",
     "material": [
       "faience"
     ],
@@ -2408,7 +2408,7 @@
       "lat": 21.066667,
       "lng": 30.716667
     },
-    "function": null,
+    "function": "personal adornment / beads",
     "images": [
       "https://artiraq.org/static/opencontext/kerma-amulets/thumbs/026207-id2038.jpg"
     ],

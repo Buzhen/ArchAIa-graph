@@ -1,7 +1,9 @@
 """
 Stage 2 - Normalization
-Reads raw JSON files from ./raw/ and their corresponding parquet metadata,
-calls Claude API to extract a unified artifact schema, geocodes missing
+Reads raw/index.json (produced by collect.py) which carries both UUIDs and
+supplemental parquet metadata — no parquet access needed here.
+
+Calls Claude API to extract a unified artifact schema, geocodes missing
 coordinates with Nominatim, and writes artifacts_normalized.json.
 
 Rules enforced by the system prompt (and this script):
@@ -9,8 +11,7 @@ Rules enforced by the system prompt (and this script):
   - coordinates come directly from the raw JSON; Nominatim is a fallback only
   - Never infer missing data — use null
 
-Requires: ANTHROPIC_API_KEY environment variable (or a .env file in this
-directory or its parent).
+Requires: ANTHROPIC_API_KEY environment variable (or a .env file).
 """
 
 import json
@@ -24,8 +25,6 @@ import requests
 from dotenv import load_dotenv
 
 _here = Path(__file__).parent
-# Load .env from this directory; fall back to (and always also load) the
-# parent Graph/ directory so the key is found wherever it lives.
 load_dotenv(_here / ".env", override=True)
 load_dotenv(_here.parent / ".env", override=True)
 
@@ -36,7 +35,11 @@ OUTPUT_FILE = Path("artifacts_normalized.json")
 NOMINATIM_URL     = "https://nominatim.openstreetmap.org/search"
 NOMINATIM_HEADERS = {"User-Agent": "ArchaeologicalGraphProject/1.0 (research)"}
 
-# ── schema & prompt ───────────────────────────────────────────────────────────
+META_KEYS = [
+    "label", "item_class", "project", "lat", "lng",
+    "year_start", "year_end", "material", "description",
+    "object_type", "period", "function",
+]
 
 SCHEMA_DESCRIPTION = """\
 {
@@ -84,11 +87,7 @@ Critical rules:
 """
 
 
-# ── helpers ───────────────────────────────────────────────────────────────────
-
 def extract_image_urls(uuid: str) -> list[str]:
-    """Pull all image URLs out of the cached raw JSON for this artifact.
-    Prefers Google Cloud Storage URLs (reliable, public); appends any others."""
     raw_path = RAW_DIR / f"{uuid}.json"
     if not raw_path.exists():
         return []
@@ -99,7 +98,7 @@ def extract_image_urls(uuid: str) -> list[str]:
 
     found: set[str] = set()
 
-    def scan(obj):
+    def scan(obj: object) -> None:
         if isinstance(obj, str):
             found.update(re.findall(
                 r'https?://\S+\.(?:jpg|jpeg|png|gif|webp)(?:\?\S*)?',
@@ -162,13 +161,11 @@ def call_claude(client: anthropic.Anthropic, uuid: str, raw: dict, meta: dict) -
     return json.loads(text)
 
 
-def fill_images(artifact: dict, uuid: str):
-    """Replace Claude's image placeholder with real URLs from the raw JSON."""
+def fill_images(artifact: dict, uuid: str) -> None:
     artifact["images"] = extract_image_urls(uuid)
 
 
-def fill_coordinates(artifact: dict):
-    """Geocode via Nominatim if lat/lng are still null."""
+def fill_coordinates(artifact: dict) -> None:
     loc = artifact.get("location") or {}
     if loc.get("lat") is None or loc.get("lng") is None:
         site   = loc.get("site")   or ""
@@ -183,9 +180,7 @@ def fill_coordinates(artifact: dict):
             time.sleep(1)
 
 
-# ── main ─────────────────────────────────────────────────────────────────────
-
-def main():
+def main() -> None:
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
         raise SystemExit("ERROR: ANTHROPIC_API_KEY environment variable is not set.")
@@ -196,25 +191,7 @@ def main():
         raise SystemExit(f"ERROR: {SAMPLE_FILE} not found. Run collect.py first.")
 
     with open(SAMPLE_FILE, encoding="utf-8") as f:
-        sample_pairs = json.load(f)   # list of {slug, uuid}
-
-    # Build uuid → supplemental metadata map from the parquet.
-    PARQUET_FILE = Path("archaia_sample_100_v4.parquet")
-    uuid_map: dict = {}
-    try:
-        import pandas as pd
-        from uuid import UUID
-        WANTED_COLS = [
-            "uuid_hex", "label", "item_class_label", "project_label",
-            "latitude", "longitude", "start", "stop",
-            "recovered_material", "recovered_description",
-            "recovered_object_type", "recovered_period", "recovered_function",
-        ]
-        df = pd.read_parquet(PARQUET_FILE, columns=WANTED_COLS)
-        df["_uuid"] = df["uuid_hex"].apply(lambda h: str(UUID(hex=h)))
-        uuid_map = df.set_index("_uuid").to_dict(orient="index")
-    except Exception as e:
-        print(f"Warning: could not load parquet for supplemental metadata: {e}")
+        sample_entries = json.load(f)
 
     if not RAW_DIR.exists():
         raise SystemExit(f"No raw/ directory found. Run collect.py first.")
@@ -223,11 +200,10 @@ def main():
         OUTPUT_FILE.unlink()
         print(f"Deleted existing {OUTPUT_FILE}")
 
-    results  = []
-    done_ids = set()
+    results: list[dict] = []
 
-    total = len(sample_pairs)
-    for i, entry in enumerate(sample_pairs, 1):
+    total = len(sample_entries)
+    for i, entry in enumerate(sample_entries, 1):
         uuid = entry["uuid"]
 
         raw_path = RAW_DIR / f"{uuid}.json"
@@ -240,33 +216,12 @@ def main():
             with open(raw_path, encoding="utf-8") as f:
                 raw = json.load(f)
 
-            # Build supplemental dict from parquet row
-            row = uuid_map.get(uuid, {})
-            meta = {}
-            if row:
-                def _val(k):
-                    v = row.get(k)
-                    return None if (v is None or str(v) in ("nan", "None", "")) else v
-                meta = {
-                    "label":       _val("label"),
-                    "item_class":  _val("item_class_label"),
-                    "project":     _val("project_label"),
-                    "lat":         _val("latitude"),
-                    "lng":         _val("longitude"),
-                    "year_start":  _val("start"),
-                    "year_end":    _val("stop"),
-                    "material":    _val("recovered_material"),
-                    "description": _val("recovered_description"),
-                    "object_type": _val("recovered_object_type"),
-                    "period":      _val("recovered_period"),
-                    "function":    _val("recovered_function"),
-                }
+            meta = {k: entry.get(k) for k in META_KEYS}
 
             artifact = call_claude(client, uuid, raw, meta)
             fill_images(artifact, uuid)
             fill_coordinates(artifact)
 
-            # Ensure year_start <= year_end (Claude occasionally returns them inverted)
             era = artifact.get("era") or {}
             s, e = era.get("year_start"), era.get("year_end")
             if s is not None and e is not None and s > e:
