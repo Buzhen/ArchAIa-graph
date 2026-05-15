@@ -36,6 +36,8 @@ def main() -> None:
     parser.add_argument("--skip-normalize", action="store_true", help="Skip Stage 2 (normalize)")
     parser.add_argument("--skip-graph",     action="store_true", help="Skip Stage 3 (build_graph)")
     parser.add_argument("--only-serve",     action="store_true", help="Skip all pipeline stages")
+    parser.add_argument("--direct",         action="store_true",
+                        help="Use collect_direct.py (no Claude API — for large datasets)")
     parser.add_argument("--port",           type=int, default=8765, help="HTTP server port")
     args = parser.parse_args()
 
@@ -43,8 +45,11 @@ def main() -> None:
 
     if not args.only_serve:
         if not args.skip_collect:
-            run_stage("Stage 1 — Data Collection   (collect.py)",   "collect.py")
-        if not args.skip_normalize:
+            if args.direct:
+                run_stage("Stage 1 — Direct Collection (collect_direct.py)", "collect_direct.py")
+            else:
+                run_stage("Stage 1 — Data Collection   (collect.py)",        "collect.py")
+        if not args.skip_normalize and not args.direct:
             run_stage("Stage 2 — Normalization      (normalize.py)", "normalize.py")
         if not args.skip_graph:
             run_stage("Stage 3 — Graph Construction (build_graph.py)", "build_graph.py")
